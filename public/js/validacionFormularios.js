@@ -1,11 +1,3 @@
-require("./bootstrap");
-
-import Alpine from "alpinejs";
-
-window.Alpine = Alpine;
-
-Alpine.start();
-
 (function () {
     var forms = document.querySelectorAll(".needs-validation");
 
@@ -20,5 +12,3 @@ Alpine.start();
         });
     });
 })();
-
-alert("Wuenas xd");

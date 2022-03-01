@@ -18,7 +18,6 @@
           action="{{ route('videojuegos.update', ["videojuego" => $videojuego ]) }}"
           method="POST"
           class="d-grid gap-2 needs-validation"
-          novalidate
           style="width: 100%"
         >
           @method('PUT')
@@ -85,7 +84,7 @@
               Por favor llene todos los campos
             </div>
           </div>
-          <div class="container d-flex m-3 justify-content-end">
+          <div class="container d-flex m-3 justify-content-end modal-footer">
             <button
               type="submit"
               class="btn btn-primary m-2"
@@ -101,11 +100,6 @@
             </button>
           </div>
         </form>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        
       </div>
     </div>
   </div>

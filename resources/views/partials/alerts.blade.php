@@ -5,9 +5,15 @@
     </div>
 @endif
 
-@if ( session('danger') )
+@if (session('danger') || ($errors) -> first())
     <div class="alert alert-danger alert-dismissible position-fixed bottom-0 end-0">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      {{ session('danger') }}
+      @if ($errors)
+          {{ ($errors) -> first() }}
+      @endif
+
+      @if (session('danger'))
+        {{ session('danger') }}
+      @endif
     </div>
 @endif

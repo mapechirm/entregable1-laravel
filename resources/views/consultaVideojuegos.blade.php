@@ -6,8 +6,8 @@
       $cont = 1 
       @endphp
 
-      <h1 class="m-4 pb-4">Consulta de Videojuegos</h1>
-      <div class="container overflow-auto">
+    <div class="container overflow-auto">
+    <h1 class="m-4 pb-4 text-center">Consulta de Videojuegos</h1>
         <table
           class="table table-hover table-striped table-bordered table-responsive"
         >

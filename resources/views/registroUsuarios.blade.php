@@ -2,11 +2,12 @@
   <x-slot name="content">
     <h1 class="m-4 pb-4">Registro de Usuarios</h1>
       <form
-        action=""
+        action="{{ route('registro.set') }}"
         method="post"
         class="d-grid gap-2 needs-validation"
         novalidate
       >
+        @csrf
         <div class="form-floating">
           <input
             id="usuario"

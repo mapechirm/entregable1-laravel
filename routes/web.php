@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\VideogameController;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,32 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy']) -> name('logout');
 
     Route::get('/register', function () {
         return view('registroUsuarios');
-    });
+    }) -> name('registro.get');
 
-    Route::resource('videojuegos', VideogameController::class) -> except(['edit']);
+    Route::post('/register', function (Request $request) {
+        try {
+            $pass = $request -> get('pass');
+            $confpass = $request -> get('confpass');
+            if ($pass !== $confpass) {
+                return back() -> with('danger', 'Las contraseñas ingresadas no coinciden.');
+            }
+            $user = new User();
+            $user -> email = $request -> get('user');
+            $user -> password = bcrypt($pass);
+            $user -> perfil = $request -> get('perfil');
+            
+            if ($user -> save()) {
+                return back() -> with('success', "El usuario fue registrado correctamente.");
+            } 
+        } catch (Exception $ex) {
+            return back() -> with('danger', "El usuario no pudo ser registrado correctamente.");
+        }
+
+    }) -> name('registro.set');
+
+    Route::resource('videojuegos', VideogameController::class) -> except(['edit', 'show']);
 });

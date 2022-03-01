@@ -32,8 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         // Probar si estos pasos son necesarios
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME) -> with('success', 'Bienvenido a Mancos Anónimos');
     }
 
     /**
